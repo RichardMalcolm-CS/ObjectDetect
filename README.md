@@ -39,3 +39,8 @@ however the general installation is done via the following.
 4. Building and Installing this in cmake GUI
 5. Opening the generated opencv.sln file in visual studio
 6. Installing the rest of the modules via INSTALL.vcxproj
+
+## Additional notes
+
+My GPU is a 3070ti and my cpu is a i7 9700k for reference
+with these components the execution time for my GPU is 15.7 seconds and the execution time on my CPU is 25 seconds!
