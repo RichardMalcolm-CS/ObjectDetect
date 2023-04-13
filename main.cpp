@@ -1,6 +1,6 @@
 /*
 Based on opencv's objectdetection.cpp 
-Based on https://github.com/niconielsen32/ComputerVision/blob/master/OpenCVdnn/objectDetection.cpp
+Also Based on https://github.com/niconielsen32/ComputerVision/blob/master/OpenCVdnn/objectDetection.cpp
 
 This program takes in images and attempts to identify objects in the images, the objects it can detect are displayed in object_detection_classes_coco.txt.
 it then draws a rectange over the detected objected and displays its percieved fps and confidence on that object.
@@ -42,16 +42,16 @@ int main(int, char**) {
             // Load in all the classes from the file
             while (getline(ifs, line))
             {
-               // cout << line << endl;
                 class_names.push_back(line);
             }
 
 
             // Read in the neural network from the files
-            //auto net = readNet(file_path + "frozen_inference_graph.pb",
+            // Read in trained model and object list
             auto net = readNet("frozen_inference_graph.pb",
                 "ssd_mobilenet_v2_coco_2018_03_29.pbtxt.txt", "TensorFlow");
 
+            // Runs on GPU during the First iteration, else run on the cpu
             if (i == 0) {
                 // Run on GPU
                 net.setPreferableBackend(cv::dnn::DNN_BACKEND_CUDA);
@@ -64,6 +64,8 @@ int main(int, char**) {
             }
 
              // Set a min confidence score for the detections
+            // confidence is a quantified value determining how much the DNN thinks the object
+            // is what it says it is.
             float min_confidence_score = 0.5;
 
 
@@ -128,11 +130,8 @@ int main(int, char**) {
                 auto totalTime = (end - start) / getTickFrequency();
 
 
-                putText(image, "FPS: " + to_string(int(1 / totalTime)), Point(50, 50), FONT_HERSHEY_DUPLEX, 1, Scalar(0, 255, 0), 2, false);
-
-
                 //imshow("image", image);
-               // int k = waitKey(200);
+                //int k = waitKey(200);
 
             }
 
@@ -147,8 +146,6 @@ int main(int, char**) {
                 cout << "execution time on CPU is " << (float)(duration.count()) / 1000000 << " seconds\n";
             }
 
-            //cap.release();
-           // destroyAllWindows();
         }
         catch (cv::Exception& e)
         {
