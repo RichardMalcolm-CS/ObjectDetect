@@ -27,7 +27,10 @@ cmake: https://cmake.org/
 VisualStudio: https://visualstudio.microsoft.com/
 opencv contrib source: https://github.com/opencv/opencv_contrib
 
-Installing opencv with cuda and cuDNN can be quite a challenge, if you would like to install them I recommend watching a video 
+Installing opencv with cuda and cuDNN can be quite a challenge, if you would like to install them I recommend watching this video
+
+https://www.youtube.com/watch?v=-GY2gT2umpk
+
 however the general installation is done via the following.
 
 1. downloading opencv source, opencv contrib, cuDNN, cudaToolKit, visual studio and cmake GUI
